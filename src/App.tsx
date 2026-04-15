@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Accueil from './Pages/Accueil';
 import Register from './Pages/auth/Register';
@@ -28,8 +28,9 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <USER.Provider value={[user, setUser, token, settoken]}>
           <Routes>
-            <Route path="/" element={<Accueil />} />
+            <Route path="/home" element={<Accueil />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/offers" element={<JobOffer />} />
             <Route path="/chat-offers" element={<ChatOffers />} />
